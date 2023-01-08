@@ -13,5 +13,7 @@ module.exports = {
       functions: 'only-multiline',
     }],
     '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/no-floating-promises': 0,
+    '@typescript-eslint/promise-function-async': 0,
   },
 }
