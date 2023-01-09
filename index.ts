@@ -10,5 +10,5 @@ function task () {
   })
 }
 
-setInterval(task, 1000 * 60 * 20)
+setInterval(task, 1000 * 60 * 60)
 task()
