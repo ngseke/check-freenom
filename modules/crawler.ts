@@ -2,9 +2,7 @@ import puppeteer from 'puppeteer'
 import dayjs from 'dayjs'
 import * as fs from 'fs/promises'
 import path from 'path'
-
-import * as dotenv from 'dotenv'
-dotenv.config()
+import { DOMAIN } from './constants'
 
 export async function sleep (ms = 3000) {
   return await new Promise((resolve) => setTimeout(resolve, ms))
@@ -18,8 +16,7 @@ export async function crawl () {
   await page.goto('https://www.freenom.com/en/index.html')
   const input = await page.waitForSelector('#idn')
 
-  const domain = process.env.DOMAIN ?? ''
-  await input?.type(domain)
+  await input?.type(DOMAIN)
 
   const submitButton = await page.waitForSelector('#submitBtn')
   await submitButton?.click()
@@ -30,7 +27,7 @@ export async function crawl () {
 
   await fs.mkdir(pathName, { recursive: true })
 
-  const timestamp = dayjs().format('YYYYMMDDHHmmss')
+  const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss')
   const fileName = `${timestamp}.png`
 
   const filePath = path.resolve(pathName, fileName)

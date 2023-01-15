@@ -1,17 +1,11 @@
 import TelegramBot from 'node-telegram-bot-api'
-import * as dotenv from 'dotenv'
+import { TELEGRAM_BOT_RECEIVERS, TELEGRAM_BOT_TOKEN } from './constants'
 
-dotenv.config()
-
-const token = process.env.TELEGRAM_BOT_TOKEN ?? ''
-const receivers =
-  process.env.TELEGRAM_BOT_RECEIVERS?.split(',') ?? []
-
-const bot = new TelegramBot(token, { polling: true })
+const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true })
 
 export async function send (caption: string, path: string) {
   return await Promise.all(
-    receivers.map(async chatId => {
+    TELEGRAM_BOT_RECEIVERS.map(async chatId => {
       await bot.sendPhoto(
         chatId,
         path,
