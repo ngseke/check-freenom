@@ -1,5 +1,5 @@
-import { send, startListener } from './telegram'
-import { crawl } from './crawler'
+import { send, startListener } from './modules/telegram'
+import { crawl } from './modules/crawler'
 
 startListener()
 
